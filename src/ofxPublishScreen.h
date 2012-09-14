@@ -29,7 +29,7 @@ namespace ofxPublishScreen {
 		
 		void draw(int x = 0, int y = 0)
 		{
-			fbo.draw(x, y + fbo.getHeight(), fbo.getWidth(), -fbo.getHeight());
+			fbo.draw(x, y);
 		}
 		
 		void begin()
