@@ -24,7 +24,7 @@ namespace ofxPublishScreen {
 			pub.setHighWaterMark(2);
 			pub.bind(buf);
 			
-			format = OF_IMAGE_FORMAT_BMP;
+			format = OF_IMAGE_FORMAT_JPEG;
 		}
 		
 		void draw(int x = 0, int y = 0)
@@ -34,7 +34,7 @@ namespace ofxPublishScreen {
 		
 		void begin()
 		{
-			fbo.begin(false);
+			fbo.begin();
 			ofFloatColor bg = ofGetCurrentRenderer()->getBgColor();
 			ofClear(bg.r * 255, bg.g * 255, bg.b * 255);
 		}
@@ -49,7 +49,7 @@ namespace ofxPublishScreen {
 			ofBuffer data;
 			
 			// TODO: image compression on another thread
-			ofSaveImage(pix, data, format);
+			ofSaveImage(pix, data, format, OF_IMAGE_QUALITY_BEST);
 			pub.send(data);
 		}
 		
