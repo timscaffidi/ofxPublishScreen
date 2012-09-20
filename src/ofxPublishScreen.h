@@ -25,6 +25,7 @@ namespace ofxPublishScreen {
 			pub.bind(buf);
 			
 			format = OF_IMAGE_FORMAT_JPEG;
+            quality = OF_IMAGE_QUALITY_BEST;
 		}
 		
 		void draw(int x = 0, int y = 0)
@@ -49,7 +50,7 @@ namespace ofxPublishScreen {
 			ofBuffer data;
 			
 			// TODO: image compression on another thread
-			ofSaveImage(pix, data, format, OF_IMAGE_QUALITY_BEST);
+			ofSaveImage(pix, data, format, quality);
 			pub.send(data);
 		}
 		
@@ -57,13 +58,15 @@ namespace ofxPublishScreen {
 		float getHeight() { return fbo.getHeight(); }
 		
 		void setImageCompressionFormat(ofImageFormat v) { format = v; }
-		
+		void setImageQuality(ofImageQualityType q) { quality = q; }
+        
 	protected:
 		
 		ofxZmqPublisher pub;
 		ofFbo fbo;
 		
 		ofImageFormat format;
+        ofImageQualityType quality;
 	};
 	
 	class Subscriber
